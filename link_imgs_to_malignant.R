@@ -26,4 +26,4 @@ df_dim = data.frame("filepath" = temp_path, "dim_1" = temp_dim_1, "dim_2" = temp
 
 df_file = merge(df_file, df_dim, by = "filepath")
 
-write.csv(df_file, 'original_file_info.csv', row.names = FALSE)
+write.csv(df_file, 'original_file_map.csv', row.names = FALSE)
