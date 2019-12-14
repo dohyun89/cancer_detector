@@ -5,9 +5,9 @@
 library(OpenImageR)
 
 file_map =  read.csv('original_file_map.csv', stringsAsFactors = FALSE, row.names = 1)
-desired_dimension = '28x28!' ##need the exclaimation mark if the scale cannot be preserved
-benign_path_to_save = './28_resize/benign/'
-malignant_path_to_save = './28_resize/malignant/'
+desired_dimension = '300x300!' ##need the exclaimation mark if the scale cannot be preserved
+benign_path_to_save = './300_resize/benign/'
+malignant_path_to_save = './300_resize/malignant/'
 pic_format = 'jpg'
 
 for (file_path in file_map$filepath)

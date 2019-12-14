@@ -1,16 +1,28 @@
-path_malignant =  paste0(getwd(),'/Skin Cancer Data/malignant/' ,list.files(path = './Skin Cancer Data/542/malignant', 
+path_malignant =  paste0(getwd(),'./Skin Cancer Data/542/malignant/' ,list.files(path = './Skin Cancer Data/542/malignant', 
                                                                             pattern = '.jpg'))
-path_benign = paste0(getwd(),'/Skin Cancer Data/benign/', list.files(path = './Skin Cancer Data/542/benign', 
+path_benign = paste0(getwd(),'./Skin Cancer Data/542/benign/', list.files(path = './Skin Cancer Data/542/benign', 
                                                                     pattern = '.jpg'))
 
 df_file= data.frame("filepath"= c(path_malignant,path_benign), 
-                    "malignant" =  c(rep(1,150), rep(0,150)))
+                    "malignant" =  c(rep(1,150), rep(0,150)), stringsAsFactors = FALSE)
                     
 #source("http://bioconductor.org/biocLite.R")
 #biocLite("EBImage")
 library(imager)
 
-image=load.image('C:/Users/krish/Desktop/grp_proj_542/Skin Cancer Data/542/malignant/ISIC_0000022.jpg')
+
+for (i in 1:150){
+  
+  image=load.image(df_file[i,1])
+
+  img_res=resize(image,300,300)
+  
+  imager::save.image(img_res,paste0("C:/Users/krish/Desktop/grp_proj_542/300_resize/malignant/" ,file_map$file_name[i]))
+  
+  
+}
+
+
 # width and height of the original image
 dim(x)[1:2]
 

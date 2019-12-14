@@ -21,9 +21,9 @@ file_id=pd.read_csv('original_file_map.csv')
 benign_id=file_id['file_name'][0:150]
 malig_id=file_id['file_name'][150:300]
 
-benign_in='C:/Users/krish/Desktop/grp_proj_542/cancer_detector/resize/benign'
+benign_in='C:/Users/krish/Desktop/grp_proj_542/cancer_detector/300_resize/benign'
 
-malig_in='C:/Users/krish/Desktop/grp_proj_542/cancer_detector/resize/malignant'
+malig_in='C:/Users/krish/Desktop/grp_proj_542/cancer_detector/300_resize/malignant'
 
 
 def img_seg(file_id,inp_path,out_path):
@@ -41,15 +41,31 @@ def img_seg(file_id,inp_path,out_path):
 
         ret, thresh = cv2.threshold(gray,0,255,cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
 
-        thresh=thresh/255
-        thresh=thresh.astype(int)
-        thresh=thresh[:,:,None]
+        thresh2=thresh/255
+        thresh2=thresh2.astype(int)
+        thresh2=thresh2[:,:,None]
 
-        seg_img=thresh*img
+        seg_img=thresh2*img
         os.chdir(out_path)
         cv2.imwrite(img_id, seg_img)
         #plt.imshow(seg_img)
+
     
+
+
+def img_thresh(file_id):
+    img = cv2.imread(str(file_id))
+        #plt.imshow(img)
+    gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+        #plt.imshow(gray)
+
+    ret, thresh = cv2.threshold(gray,0,255,cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
+    
+    return thresh
+    
+
+
+
 
 benign_out='C:/Users/krish/Desktop/grp_proj_542/cancer_detector/Segmented/benign'
     
